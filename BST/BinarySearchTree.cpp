@@ -1,0 +1,78 @@
+#include<iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node* left;
+    Node* right;
+    Node(int val)
+    {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+Node* root = NULL;
+
+Node* insert(Node* node, int val)
+{
+    if (node == NULL)
+    {
+        return new Node(val);
+    }
+    if (val < node->data)
+    {
+        node->left = insert(node->left, val);
+    }
+    else if (val > node->data)
+    {
+        node->right = insert(node->right, val);
+    }
+    return node;
+}
+Node* findmin(Node* node)
+{
+    Node* current = node;
+    while (current && current->left != NULL)
+    {
+        current = current->left;
+    }
+    return current;
+}
+
+Node* deleteNode(Node* node, int val)
+{
+    if (node == NULL)
+    {
+        return node;
+    }
+    if (val < node->data)
+    {
+        node->left = deleteNode(node->left, val);
+    }
+    else if (val > node->data)
+    {
+        node->right = deleteNode(node->right, val);
+    }
+    else
+    {
+        if (node->left == NULL)
+        {
+            Node* temp = node->right;
+            delete node;
+            return temp;
+        }
+        else if (node->right == NULL)
+        {
+            Node* temp = node->left;
+            delete node;
+            return temp;
+        }
+        Node* temp = findmin(node->right);
+        node->data = temp->data;
+        node->right = deleteNode(node->right, temp->data);
+    }
+    return node;
+}
