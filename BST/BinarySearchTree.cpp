@@ -76,3 +76,37 @@ Node* deleteNode(Node* node, int val)
     }
     return node;
 }
+Node* search(Node* node, int val)
+{
+    if (node == NULL || node->data == val)
+    {
+        return node;
+    }
+    if (val < node->data)
+    {
+        return search(node->left, val);
+    }
+    return search(node->right, val);
+}
+int main()
+{
+    root = insert(root, 50);
+    insert(root, 30);
+    insert(root, 20);
+    insert(root, 40);
+    insert(root, 70);
+    insert(root, 60);
+    insert(root, 80);
+
+    int key = 40;
+    root = deleteNode(root, key);
+
+    key = 100;
+    Node* result = search(root, key);
+    if (result != NULL)
+        cout << "Found " << key << endl;
+    else
+        cout << key << " not found" << endl;
+
+    return 0;
+}
