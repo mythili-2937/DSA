@@ -34,12 +34,12 @@ Node* insert(Node* node, int val)
 }
 Node* findmin(Node* node)
 {
-    Node* current = node;
-    while (current && current->left != NULL)
+    Node* temp = node;
+    while (temp && temp->left != NULL)
     {
-        current = current->left;
+        temp = temp->left;
     }
-    return current;
+    return temp;
 }
 
 Node* deleteNode(Node* node, int val)
