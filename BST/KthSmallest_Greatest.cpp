@@ -60,22 +60,19 @@ int kthSmallest(Node* root, int& k)
 int kthLargest(Node* root, int& k)
 {
     if (root == NULL)
-        return 0;
+        return -1;
 
-    // Go to right subtree first
-    int ans=kthLargest(root->right, k);
+    int ans = kthLargest(root->right, k);
 
-    // Visit current node
+    if (k == 0)
+        return ans;
+
     k--;
 
     if (k == 0)
-    {
-        ans = root->data;
-        return ans;
-    }
-    // Go to left subtree
-  ans= kthLargest(root->left, k);
+        return root->data;
 
+    return kthLargest(root->left, k);
 }
 int main()
 {

@@ -82,11 +82,14 @@ Node* search(Node* node, int val)
     {
         return node;
     }
-    if (val < node->data)
+    else if (val < node->data)
     {
         return search(node->left, val);
     }
-    return search(node->right, val);
+    else
+    {
+        return search(node->right, val);
+    }
 }
 int main()
 {
