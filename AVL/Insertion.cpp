@@ -115,6 +115,7 @@ void insert(int val)
 {
 	root=insert(root,val);
 }
+
 //inorder
 void inorderTraversal(Node* node)
 {
