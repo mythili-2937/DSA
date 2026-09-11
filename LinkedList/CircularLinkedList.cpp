@@ -51,7 +51,6 @@ int main()
 	//s.removeEnd();
 	//s.removeVal(40);
 	cout<<endl;
-	s.search(55);
 	//s.display();
 	return 0;
 }
